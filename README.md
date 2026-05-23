@@ -12,6 +12,9 @@ This is my year-long SvelteKit mastery program, only containing projects that ha
 5. `05-siax-reborn-small`: A rebirth of the SiAX virtual machine platform. I built a VM, bytecode generator, and programming language with Ohm. I used CodeMirror to actually render it with a theme, and have the ability to type live-updating code.
 6. `06-tanstack-mastery`: This is a conglomerate experiment of many different tanstack table aspects, built from the ground up, to master tables and all of their quirks. Once this is mastered, I will have infinite power to create any table I want for any data visualizing I want.
 ## Most Important Takeaways
+7. `07-clis-langs`: This one is a break from the norm. A "deload" of making programming languages like old times to feel important again.
+8. `08-polling`: This one is for mastering polling with query.live in SvelteKit interfaces.
+9. `09-betterauth`: This one is for mastery of betterauth, managing users, etc, all in a CRUD interface (using remote functions)
 
 - **USE REMOTE FUNCTIONS**: They are made for the purpose of RPC. RPC improves the standard "creating hella actions" by creating the remote endpoints and allowing more specific and performant refreshes for queries. `$lib/api/tasks/query.remote.ts` instead of `+page.server.ts`
 

@@ -1,0 +1,18 @@
+{
+	"name": "svelte-monorepo-building",
+	"private": true,
+	"workspaces": [
+		"01-*",
+		"02-*",
+		"03-*",
+		"04-*",
+		"05-*",
+		"06-*",
+		"07-*",
+		"08-*",
+		"packages/*"
+	],
+	"dependencies": {
+		"zod": "^4.4.3"
+	}
+}

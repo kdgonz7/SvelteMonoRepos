@@ -40,6 +40,7 @@
 declare module '$env/static/private' {
 	export const ALLUSERSPROFILE: string;
 	export const APPDATA: string;
+	export const BUN_WHICH_IGNORE_CWD: string;
 	export const COLORTERM: string;
 	export const CommonProgramFiles: string;
 	export const CommonProgramW6432: string;
@@ -48,21 +49,18 @@ declare module '$env/static/private' {
 	export const DriverData: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
+	export const INIT_CWD: string;
+	export const JOBS: string;
 	export const LANG: string;
 	export const LOCALAPPDATA: string;
 	export const LOGONSERVER: string;
 	export const NODE: string;
-	export const NODE_ENV: string;
-	export const npm_command: string;
 	export const npm_config_local_prefix: string;
 	export const npm_config_user_agent: string;
 	export const npm_execpath: string;
-	export const npm_lifecycle_event: string;
-	export const npm_lifecycle_script: string;
 	export const npm_node_execpath: string;
 	export const npm_package_json: string;
 	export const npm_package_name: string;
-	export const npm_package_version: string;
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OneDrive: string;
 	export const OS: string;
@@ -77,7 +75,6 @@ declare module '$env/static/private' {
 	export const ProgramW6432: string;
 	export const PSModulePath: string;
 	export const PUBLIC: string;
-	export const PWD: string;
 	export const SESSIONNAME: string;
 	export const SystemDrive: string;
 	export const SystemRoot: string;
@@ -181,6 +178,7 @@ declare module '$env/dynamic/private' {
 	export const env: {
 		ALLUSERSPROFILE: string;
 		APPDATA: string;
+		BUN_WHICH_IGNORE_CWD: string;
 		COLORTERM: string;
 		CommonProgramFiles: string;
 		CommonProgramW6432: string;
@@ -189,21 +187,18 @@ declare module '$env/dynamic/private' {
 		DriverData: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
+		INIT_CWD: string;
+		JOBS: string;
 		LANG: string;
 		LOCALAPPDATA: string;
 		LOGONSERVER: string;
 		NODE: string;
-		NODE_ENV: string;
-		npm_command: string;
 		npm_config_local_prefix: string;
 		npm_config_user_agent: string;
 		npm_execpath: string;
-		npm_lifecycle_event: string;
-		npm_lifecycle_script: string;
 		npm_node_execpath: string;
 		npm_package_json: string;
 		npm_package_name: string;
-		npm_package_version: string;
 		NUMBER_OF_PROCESSORS: string;
 		OneDrive: string;
 		OS: string;
@@ -218,7 +213,6 @@ declare module '$env/dynamic/private' {
 		ProgramW6432: string;
 		PSModulePath: string;
 		PUBLIC: string;
-		PWD: string;
 		SESSIONNAME: string;
 		SystemDrive: string;
 		SystemRoot: string;

@@ -47,6 +47,8 @@ declare module '$env/static/private' {
 	export const COMPUTERNAME: string;
 	export const ComSpec: string;
 	export const DriverData: string;
+	export const EFC_8172_1592913036: string;
+	export const EFC_8172_4126798990: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
 	export const INIT_CWD: string;
@@ -63,6 +65,7 @@ declare module '$env/static/private' {
 	export const npm_package_name: string;
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OneDrive: string;
+	export const OneDriveConsumer: string;
 	export const OS: string;
 	export const PATH: string;
 	export const PATHEXT: string;
@@ -90,6 +93,7 @@ declare module '$env/static/private' {
 	export const windir: string;
 	export const ZED_ENVIRONMENT: string;
 	export const ZED_TERM: string;
+	export const ZES_ENABLE_SYSMAN: string;
 }
 
 /**
@@ -185,6 +189,8 @@ declare module '$env/dynamic/private' {
 		COMPUTERNAME: string;
 		ComSpec: string;
 		DriverData: string;
+		EFC_8172_1592913036: string;
+		EFC_8172_4126798990: string;
 		HOMEDRIVE: string;
 		HOMEPATH: string;
 		INIT_CWD: string;
@@ -201,6 +207,7 @@ declare module '$env/dynamic/private' {
 		npm_package_name: string;
 		NUMBER_OF_PROCESSORS: string;
 		OneDrive: string;
+		OneDriveConsumer: string;
 		OS: string;
 		PATH: string;
 		PATHEXT: string;
@@ -228,6 +235,7 @@ declare module '$env/dynamic/private' {
 		windir: string;
 		ZED_ENVIRONMENT: string;
 		ZED_TERM: string;
+		ZES_ENABLE_SYSMAN: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: `${string}`]: string | undefined;
 	}

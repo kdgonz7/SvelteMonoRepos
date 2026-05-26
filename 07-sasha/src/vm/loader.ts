@@ -19,10 +19,10 @@ export class Loader {
   #pc: number = 0;
   #sp: number;
 
-  constructor(pageSize: number = 65536) {
-    this.#bytecode = new Uint8Array(pageSize);
+  constructor(bytecode: Uint8Array) {
+    this.#bytecode = bytecode;
     this.#pc = 0;
-    this.#sp = pageSize - 1;
+    this.#sp = bytecode.length - 1;
   }
 
   getCurrentAddress(): number {
@@ -43,10 +43,18 @@ export class Loader {
     if (this.hasInvalidProgramState()) return null;
     if (this.#pc + amount > this.#bytecode.length) return null;
 
+    console.log("readnext called", amount);
     const bytes = this.#bytecode.slice(this.#pc, this.#pc + amount);
     this.#pc += amount;
 
     return bytes;
+  }
+
+  readOne(): number | null | undefined {
+    if (this.hasInvalidProgramState()) return null;
+    if (this.#pc + 1 >= this.#bytecode.length) return null;
+
+    return this.#bytecode[++this.#pc];
   }
 
   goToAddress(address: Address): Potential<LoaderError> {
@@ -59,6 +67,10 @@ export class Loader {
       };
 
     this.#pc = address;
+  }
+
+  setAddress(addr: Address) {
+    this.#pc = addr;
   }
 
   /**

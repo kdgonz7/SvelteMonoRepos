@@ -23,3 +23,7 @@ export const Err = <E>(value: E) => {
     value,
   } as Err<E>;
 };
+
+export const isErr = <E extends { ok: boolean } | void>(e: E): boolean => {
+  return !e || e.ok === false;
+};

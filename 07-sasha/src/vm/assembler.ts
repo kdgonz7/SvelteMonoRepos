@@ -17,11 +17,7 @@ export type AssemblerBlock = {
 };
 
 /**
- * The assembler class is designed to have an easy interface to create offsets, manage them, and export offset information.
- *
- * The assembler holds a reference to a given block of memory, and manages offsets through a mapping.
- *
- * If you call `assembler.writeTo('data', 0x03, [1,2,3])` then it will handle the offsetting, memory safety, and allocation for you.
+ * The assembler acts as the middleman between the allocators, symbols, offsets, and memory.
  */
 export class Assembler {
   #dataSegments = new Map<string, AssemblerBlock>();

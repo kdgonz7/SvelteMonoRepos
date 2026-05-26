@@ -1,6 +1,6 @@
 import { superValidate } from "sveltekit-superforms";
 import type { PageServerLoad } from "./$types";
-import { signupSchema } from "@svmrp/schemas";
+import { loginSchema } from "@svmrp/schemas";
 import { zod4 } from "sveltekit-superforms/adapters";
 import type { Actions } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
@@ -8,26 +8,26 @@ import { auth } from "$lib/server/auth";
 
 export const load = (async () => {
   return {
-    form: await superValidate(zod4(signupSchema)),
+    form: await superValidate(zod4(loginSchema)),
   };
 }) satisfies PageServerLoad;
 
 export const actions = {
   default: async (event) => {
-    let form = await superValidate(event, zod4(signupSchema));
+    let form = await superValidate(event, zod4(loginSchema));
     if (!form.valid) return fail(400, { form });
-    let { email, password, username } = form.data;
+
+    let { email, password } = form.data;
     try {
-      await auth.api.signUpEmail({
+      await auth.api.signInEmail({
         body: {
-          name: username,
           email,
           password,
         },
       });
     } catch (e) {
-      console.error("Sign UP error:", e);
-      return fail(400, { form, error: "Unknown API error occurred!" });
+      console.error("Sign in error:", e);
+      return fail(400, { form, error: "Invalid email or password" });
     }
 
     throw redirect(308, "/");

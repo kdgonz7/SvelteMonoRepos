@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { signupSchema } from "@svmrp/schemas";
+  import { loginSchema } from "@svmrp/schemas";
   import { zod4Client } from "sveltekit-superforms/adapters";
   import type { PageProps } from "./$types";
   import { superForm } from "sveltekit-superforms";
@@ -10,17 +10,18 @@
     CardHeader,
     CardTitle,
   } from "$lib/components/ui/card";
-  import { FieldDescription, FieldGroup } from "$lib/components/ui/field";
+  import { FieldGroup } from "$lib/components/ui/field";
   import { FormField, FormControl, FormLabel } from "$lib/components/ui/form";
   import { Input } from "$lib/components/ui/input";
   import { Button } from "$lib/components/ui/button";
   import FormFieldErrors from "$lib/components/ui/form/form-field-errors.svelte";
+  import FieldDescription from "$lib/components/ui/field/field-description.svelte";
   import FormButton from "$lib/components/ui/form/form-button.svelte";
 
   let { data }: PageProps = $props();
 
   let form = superForm(data.form, {
-    validators: zod4Client(signupSchema),
+    validators: zod4Client(loginSchema),
   });
   let { form: formData, enhance } = form;
 </script>
@@ -28,23 +29,12 @@
 <div class="w-full h-screen flex items-center justify-center">
   <Card class="w-full max-w-xl">
     <CardHeader>
-      <CardTitle>Sign Up</CardTitle>
-      <CardDescription>
-        Sign up for an account to test my authentication skills.
-      </CardDescription>
+      <CardTitle>Log in</CardTitle>
+      <CardDescription>Log in to MyNike orgs.</CardDescription>
     </CardHeader>
     <CardContent>
       <form method="POST" use:enhance>
         <FieldGroup>
-          <FormField {form} name="username">
-            <FormControl>
-              {#snippet children({ props })}
-                <FormLabel for={props.id}>Username</FormLabel>
-                <Input {...props} type="text" bind:value={$formData.username} />
-              {/snippet}
-            </FormControl>
-            <FormFieldErrors />
-          </FormField>
           <FormField {form} name="email">
             <FormControl>
               {#snippet children({ props })}
@@ -70,7 +60,7 @@
 
           <FormButton class="w-full">Submit</FormButton>
           <FieldDescription>
-            Already have an account? <a href="/login">Log in.</a>
+            Don't have an account? <a href="/signup">Sign up.</a>
           </FieldDescription>
         </FieldGroup>
       </form>

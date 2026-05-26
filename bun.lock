@@ -193,8 +193,12 @@
     },
     "07-sasha": {
       "name": "07-sasha",
+      "dependencies": {
+        "prettier": "^3.8.3",
+      },
       "devDependencies": {
         "@types/bun": "^1.3.14",
+        "bun-types": "^1.3.14",
       },
       "peerDependencies": {
         "typescript": "^5",

@@ -123,10 +123,6 @@ export class VirtualMachine {
     }
   }
 
-  on() {
-    this.#state = "ON";
-  }
-
   step(times: number = 1): Result<boolean, VMError | null> {
     if (this.#state === "OFF") return Err(null);
 

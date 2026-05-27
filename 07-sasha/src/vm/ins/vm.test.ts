@@ -12,7 +12,7 @@ describe("VM Run", () => {
     vm.allocateAreas();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
-    vm.on();
+    vm.turnOn();
     vm.loadProgram([
       standardOpCodes.PUSH,
       5,
@@ -34,7 +34,7 @@ describe("VM Run", () => {
       existingMemory: mem,
     });
     vm.allocateAreas();
-    vm.on();
+    vm.turnOn();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
     // prettier-ignore
@@ -60,7 +60,7 @@ describe("VM Run", () => {
       existingMemory: mem,
     });
     vm.allocateAreas();
-    vm.on();
+    vm.turnOn();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
     // prettier-ignore
@@ -87,7 +87,7 @@ describe("VM Run", () => {
     });
 
     vm.allocateAreas();
-    vm.on();
+    vm.turnOn();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
     // prettier-ignore
@@ -112,7 +112,7 @@ describe("VM Run", () => {
     });
 
     vm.allocateAreas();
-    vm.on();
+    vm.turnOn();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
     // prettier-ignore

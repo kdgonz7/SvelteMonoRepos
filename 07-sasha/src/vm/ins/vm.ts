@@ -1,4 +1,4 @@
-import { Some, type Optional } from "../../shared/potential";
+import { Some, type Optional, type Potential } from "../../shared/potential";
 import { Err, isErr, Ok, type Result } from "../../shared/result";
 import { Assembler } from "../assembler";
 import { Loader as BytecodeLoader } from "../loader";
@@ -81,7 +81,9 @@ export class VirtualMachine {
    * @param layout The layout for the memory areas
    * @returns nothing.
    */
-  allocateAreas(layout: AllocatorLayout = defaultAllocatorLayout) {
+  allocateAreas(
+    layout: AllocatorLayout = defaultAllocatorLayout,
+  ): Potential<string> {
     for (const [name, info] of Object.entries(layout)) {
       let e = this.#assemblerInternal.allocateSegment(
         name,
@@ -160,6 +162,10 @@ export class VirtualMachine {
    */
   pop(): number | undefined {
     return this.reader.stackPop();
+  }
+
+  push(arg0: number) {
+    this.reader.stackPush(arg0);
   }
 
   isOn() {

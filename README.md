@@ -9,7 +9,7 @@ This is my year-long SvelteKit mastery program, only containing projects that ha
 3. `03-mastering-monaco`: This isn't as good as I wanted, I don't like setting up editors in Svelte.
 4. `04-visualizing-data`: This is a proper CRUD loop in modern Svelte. This IS modern Svelte.
 	- it uses purely remote functions EVEN WITH SUPERFORMS, by instead of having a roundtrip for form validation, using the clientside validation and just using remote functions with the payload in an `onUpdate` function. This is around the point of mastery, so more projects USING THESE FUNCTIONS will be made, but nothing atomic like this one. It also masters drizzle.
-5. `05-siax-reborn-small`: A rebirth of the SiAX virtual machine platform. I built a VM, bytecode generator, and programming language with Ohm. I used CodeMirror to actually render it with a theme, and have the ability to type live-updating code.
+5. `05-siax-reborn-small`: A rebirth of the SiAX virtual machine platform. I built a VM, bytecode generator, and programming langiuage with Ohm. I used CodeMirror to actually render it with a theme, and have the ability to type live-updating code.
 6. `06-tanstack-mastery`: This is a conglomerate experiment of many different tanstack table aspects, built from the ground up, to master tables and all of their quirks. Once this is mastered, I will have infinite power to create any table I want for any data visualizing I want.
 7. `07-sasha`: This one is a break from the norm. A "deload" of making programming languages like old times to feel important again.
 		8. Do keep in mind, this is going to be intense. This is an entire rewrite and the best parts of all my old VMs. I will work on this alongside everything else.

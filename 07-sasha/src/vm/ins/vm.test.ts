@@ -33,7 +33,7 @@ describe("VM Run", () => {
     let vm = new VirtualMachine({
       existingMemory: mem,
     });
-    vm.allocateDefaultAreas();
+    vm.allocateAreas();
     vm.on();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
@@ -59,7 +59,7 @@ describe("VM Run", () => {
     let vm = new VirtualMachine({
       existingMemory: mem,
     });
-    vm.allocateDefaultAreas();
+    vm.allocateAreas();
     vm.on();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
@@ -86,7 +86,32 @@ describe("VM Run", () => {
       existingMemory: mem,
     });
 
-    vm.allocateDefaultAreas();
+    vm.allocateAreas();
+    vm.on();
+    vm.setInstructionSet(standardSaSHAInstructionSet);
+
+    // prettier-ignore
+    vm.loadProgram([
+      standardOpCodes.PUSH, 5,
+      standardOpCodes.PUSH, 10,
+      standardOpCodes.JMP, 7,
+      standardOpCodes.ADD,
+      standardOpCodes.HALT,
+    ]);
+
+    vm.run();
+
+    expect(vm.pop()).toBe(10);
+    expect(vm.isOff()).toBe(true);
+  });
+
+  test("VM Something Random", () => {
+    let mem = new Uint8Array(3000);
+    let vm = new VirtualMachine({
+      existingMemory: mem,
+    });
+
+    vm.allocateAreas();
     vm.on();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 

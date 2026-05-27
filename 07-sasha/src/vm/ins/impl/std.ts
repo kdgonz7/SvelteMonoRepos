@@ -11,7 +11,7 @@ export const standardSaSHAInstructionSet: InstructionSet = {
     if (!byteToPush)
       return Err(VMError(vm.getState(), "failed to read push byte"));
 
-    vm.reader.stackPush(byteToPush!);
+    vm.push(byteToPush!);
   },
 
   [standardOpCodes.POP]: (vm: VirtualMachine) => {
@@ -26,7 +26,7 @@ export const standardSaSHAInstructionSet: InstructionSet = {
       return Err(VMError(vm.getState(), "add requires two operands"));
     }
 
-    vm.reader.stackPush(a + b);
+    vm.push(a + b);
   },
   [standardOpCodes.CALL]: (vm: VirtualMachine) => {
     const goto = vm.reader.readOne()!;

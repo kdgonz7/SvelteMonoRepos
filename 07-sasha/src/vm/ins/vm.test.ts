@@ -9,7 +9,7 @@ describe("VM Run", () => {
     let vm = new VirtualMachine({
       existingMemory: mem,
     });
-    vm.allocateDefaultAreas();
+    vm.allocateAreas();
     vm.setInstructionSet(standardSaSHAInstructionSet);
 
     vm.on();

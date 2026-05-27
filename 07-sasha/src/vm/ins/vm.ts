@@ -18,6 +18,25 @@ export let VMError = (currentState: VMState, message: string): VMError => {
 };
 export type InstructionSet = Record<number, InstructionFn>;
 export type InstructionFn = (v: VirtualMachine) => Optional<number>;
+export type AllocatorLayout = Record<
+  string,
+  {
+    size: number;
+    type: "readonly" | "write" | "prog";
+  }
+>;
+
+export const defaultAllocatorLayout: AllocatorLayout = {
+  code: {
+    size: 1024,
+    type: "prog",
+  },
+  data: {
+    size: 1024,
+    type: "write",
+  },
+};
+
 /**
  * The virtual machine brings together the assembler, allocator, loaders, and segmentation
  * to form a "computer" that can execute instructions
@@ -45,22 +64,33 @@ export class VirtualMachine {
 
     // note: purely for memory safety.
     this.#segmentation = new SegmentAllocator();
-  }
-  getState(): VMState {
-    return this.#state;
-  }
-  allocateDefaultAreas() {
-    //TODO: convert this into a payload -> object map of seg to seg info
-    //      Might also need to change it to a VM function, so we don't repeat
-    //      Allocations into the SegmentAllocator.
-    let e = this.#assemblerInternal.allocateSegment("code", 1024, "prog");
-    if (isErr(e)) {
-      return Err("VM unable to allocate code bytes");
-    }
 
-    let f = this.#assemblerInternal.allocateSegment("data", 1024, "write");
-    if (isErr(f)) {
-      return Err("VM unable to allocate data bytes");
+    if (instructions) {
+      this.setInstructionSet(instructions);
+    }
+  }
+
+  setInstructionSet(set: InstructionSet) {
+    this.#instructions.clear();
+    Object.entries(set).forEach(([key, value]) => {
+      this.#instructions.set(Number(key), value);
+    });
+  }
+  /**
+   * Allocates areas for the VM to have access to. Contains things like a "data" region, "code", etc.
+   * @param layout The layout for the memory areas
+   * @returns nothing.
+   */
+  allocateAreas(layout: AllocatorLayout = defaultAllocatorLayout) {
+    for (const [name, info] of Object.entries(layout)) {
+      let e = this.#assemblerInternal.allocateSegment(
+        name,
+        info.size,
+        info.type,
+      );
+      if (isErr(e)) {
+        return Err(`VM unable to allocate memory for ${name}`);
+      }
     }
   }
 
@@ -125,6 +155,9 @@ export class VirtualMachine {
     return Ok(false);
   }
 
+  /**
+   * @returns stackpop from this.reader
+   */
   pop(): number | undefined {
     return this.reader.stackPop();
   }
@@ -137,14 +170,15 @@ export class VirtualMachine {
     return this.#state === "OFF";
   }
 
+  getState(): VMState {
+    return this.#state;
+  }
+
   turnOff() {
     this.#state = "OFF";
   }
 
-  setInstructionSet(set: InstructionSet) {
-    this.#instructions.clear();
-    Object.entries(set).forEach(([key, value]) => {
-      this.#instructions.set(Number(key), value);
-    });
+  turnOn() {
+    this.#state = "ON";
   }
 }

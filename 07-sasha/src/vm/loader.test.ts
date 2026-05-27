@@ -2,7 +2,7 @@ import { describe, beforeAll, afterAll, test, expect } from "bun:test";
 import { Loader } from "./loader";
 describe("VM Behavior", () => {
   test("Loader can create and add bytes", () => {
-    let l = new Loader();
+    let l = new Loader(new Uint8Array(1024));
     l.loadBytes([2, 3, 4, 5]);
 
     expect(l.getCurrentAddress()).toBe(0);
@@ -11,7 +11,7 @@ describe("VM Behavior", () => {
   });
 
   test("Loader can advnace", () => {
-    let l = new Loader();
+    let l = new Loader(new Uint8Array(1024));
     l.loadBytes([2, 3, 4, 5]);
 
     // read 2 bytes at a time, checking each payload
@@ -25,7 +25,7 @@ describe("VM Behavior", () => {
   });
 
   test("Loader Goto address", () => {
-    let l = new Loader();
+    let l = new Loader(new Uint8Array(1024));
     l.loadBytes([2, 3, 4, 5, 6, 21, 33, 31, 31, 4, 24, 42, 13]);
 
     expect(l.getCurrentAddress()).toBe(0);
@@ -39,7 +39,7 @@ describe("VM Behavior", () => {
   });
 
   test("Loader Push pop", () => {
-    let l = new Loader();
+    let l = new Loader(new Uint8Array(1024));
     l.loadBytes([1]);
 
     expect(l.stackPush(5)).pass();
@@ -56,7 +56,7 @@ describe("VM Behavior", () => {
   });
 
   test("Loader Intense Situations", () => {
-    let l = new Loader();
+    let l = new Loader(new Uint8Array(1024));
     l.loadBytes([1]);
 
     expect(l.canAdvance()).toBe(true);
@@ -64,13 +64,13 @@ describe("VM Behavior", () => {
   });
 
   test("Loader Error", () => {
-    let l = new Loader();
+    let l = new Loader(new Uint8Array(1024));
     l.loadBytes([1]);
     expect(l.goToAddress(1338915389)).toEqual({
       ok: false,
       value: {
         message:
-          "Address to jump to (1338915389) is larger than max bytecode size. (65536)",
+          "Address to jump to (1338915389) is larger than max bytecode size. (1024)",
       },
     });
   });

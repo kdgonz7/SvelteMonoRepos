@@ -43,7 +43,6 @@ export class Loader {
     if (this.hasInvalidProgramState()) return null;
     if (this.#pc + amount > this.#bytecode.length) return null;
 
-    console.log("readnext called", amount);
     const bytes = this.#bytecode.slice(this.#pc, this.#pc + amount);
     this.#pc += amount;
 
